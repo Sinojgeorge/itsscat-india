@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITSSCAT-India | Institute of Talent Search for Social Change And Transformation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f39c12" width="1200" height="600"/><circle fill="%23e74c3c" cx="300" cy="150" r="80" opacity="0.3"/><circle fill="%239b59b6" cx="900" cy="300" r="100" opacity="0.3"/><circle fill="%2327ae60" cx="600" cy="450" r="90" opacity="0.3"/></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 80px 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #e74c3c, #f39c12);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-text h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .about-image {
+            text-align: center;
+            background: linear-gradient(135deg, #3498db, #9b59b6);
+            border-radius: 20px;
+            padding: 3rem;
+            color: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .about-image h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Programs Section */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 5px solid #3498db;
+        }
+
+        .program-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .program-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .program-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .program-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .program-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .contact-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-card p {
+            margin-bottom: 0.5rem;
+            line-height: 1.6;
+        }
+
+        .contact-card .phone {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #f39c12;
+        }
+
+        /* Footer */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .founder-info {
+            background: linear-gradient(135deg, #8e44ad, #3498db);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .founder-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #2c3e50;
+                flex-direction: column;
+                padding: 1rem 0;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .programs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 60px 1rem;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">ITSSCAT-India</a>
+            <nav>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#programs">Programs</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>ITSSCAT-India</h1>
+            <p>Institute of Talent Search for Social Change And Transformation</p>
+            <p>Empowering students from 8th standard to +2 for Civil Services through disciplined training and spiritual growth</p>
+            <a href="#about" class="cta-button">Discover Our Mission</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title">About ITSSCAT-India</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Our Mission</h3>
+                <p>ITSSCAT-India is a premier educational and charitable organization dedicated to nurturing young minds from 8th standard to +2 level. We provide comprehensive training for Civil Services aspirants through a unique blend of academic excellence, spiritual development, and character building.</p>
+                
+                <p>Our institute follows a strict timetable and disciplined approach to ensure holistic development of students. We believe in transforming not just academic capabilities but also building strong moral foundations that will serve our students throughout their lives.</p>
+                
+                <p>Through our comprehensive programs, we aim to create future leaders who will contribute meaningfully to society and bring about positive social change.</p>
+            </div>
+            <div class="about-image">
+                <h3>Excellence in Education</h3>
+                <p>Building tomorrow's leaders through discipline, dedication, and spiritual growth</p>
+            </div>
+        </div>
+        
+        <div class="founder-info">
+            <h3>Founded by Fr. Jose Karekkattu</h3>
+            <p>Under the visionary leadership of Fr. Jose Karekkattu, ITSSCAT-India continues to transform young lives through quality education and spiritual guidance.</p>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="section" id="programs">
+        <h2 class="section-title">Our Training Programs</h2>
+        <div class="programs-grid">
+            <div class="program-card">
+                <h3>Academic Excellence</h3>
+                <ul class="program-list">
+                    <li>Reading Practice Sessions</li>
+                    <li>Language Development</li>
+                    <li>General Knowledge Training</li>
+                    <li>Emergency Essay Writing</li>
+                    <li>Comprehensive Study Materials</li>
+                </ul>
+            </div>
+            
+            <div class="program-card">
+                <h3>Personal Development</h3>
+                <ul class="program-list">
+                    <li>Speech Training & Communication</li>
+                    <li>Behavior Enhancement Programs</li>
+                    <li>Leadership Development</li>
+                    <li>Confidence Building Activities</li>
+                    <li>Personality Development</li>
+                </ul>
+            </div>
+            
+            <div class="program-card">
+                <h3>Spiritual & Physical Growth</h3>
+                <ul class="program-list">
+                    <li>Daily Prayer Sessions</li>
+                    <li>Morning Exercise Routines</li>
+                    <li>Meditation & Mindfulness</li>
+                    <li>Character Building Activities</li>
+                    <li>Moral Value Education</li>
+                </ul>
+            </div>
+            
+            <div class="program-card">
+                <h3>Current Affairs & Analysis</h3>
+                <ul class="program-list">
+                    <li>Daily Newspaper Reading</li>
+                    <li>Current Events Discussion</li>
+                    <li>Political Awareness Sessions</li>
+                    <li>Social Issues Analysis</li>
+                    <li>Civil Services Preparation</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title">Our Locations</h2>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <h3>Main Branch - Trivandrum</h3>
+                <p><strong>ITSSCAT - India</strong></p>
+                <p>H. No. E 49, Shastrinagar</p>
+                <p>Karamana, Trivandrum</p>
+                <p>Trivandrum - 695002, India</p>
+                <p class="phone">📞 0471 2341498</p>
+            </div>
+            
+            <div class="contact-card">
+                <h3>Unit-2 - Perinthalmanna</h3>
+                <p><strong>ITSSCAT-India, Unit-2</strong></p>
+                <p>De Sales Bhavan, Palachode P.O</p>
+                <p>Paloorkotta Road</p>
+                <p>Perinthalmanna, Malappuram (Dt)</p>
+                <p class="phone">📞 0471 2341498</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 ITSSCAT-India. All rights reserved. | Empowering minds, transforming lives.</p>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+                // Close mobile menu after clicking
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Add scroll effect to header
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'linear-gradient(135deg, rgba(44, 62, 80, 0.95) 0%, rgba(52, 152, 219, 0.95) 100%)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.background = 'linear-gradient(135deg, #2c3e50 0%, #3498db 100%)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all program cards and contact cards
+        document.querySelectorAll('.program-card, .contact-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.program-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.borderLeftColor = '#e74c3c';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.borderLeftColor = '#3498db';
+            });
+        });
+    </script>
+</body>
+</html>
